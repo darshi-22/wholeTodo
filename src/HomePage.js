@@ -6,12 +6,13 @@ function HomePage() {
     const [name,setName]=useState('');
     const [task,setTask]=useState('');
     const navigate=useNavigate();
-    const submitHandler=async()=>{
-         await axios.post('http://localhost:5000/submit',{
-            name,task
-         })
-         navigate('/table')
-    }
+    const submitHandler = async () => {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/submit`, {
+            name,
+            task
+        });
+        navigate('/table');
+    };
   return (
     <div>
       Name:  

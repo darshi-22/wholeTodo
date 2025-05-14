@@ -3,9 +3,10 @@ import axios from 'axios';
 function Table() {
 
   const [data,setData]=useState([]);
-  useEffect(()=>{
-    axios.get('http://localhost:5000/getTask').then(res=>setData(res.data));
-  },[]);
+  useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/getTask`)
+            .then(res => setData(res.data));
+    }, []);
 
   return (
     <div>
