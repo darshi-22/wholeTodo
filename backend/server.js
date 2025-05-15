@@ -2,11 +2,20 @@ const express=require('express');
 const connectDB=require('./connectDB');
 const { createTask, getTask } = require('./controllers/taskController');
 const cors=require('cors');
+const path = require('path');
+
+
 
 const app=express();
 app.use(cors())
 app.use(express.json())
 connectDB();
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.post('/submit',createTask);
 app.get('/getTask',getTask);
